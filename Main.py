@@ -77,6 +77,8 @@ while 1:
                 pass
             elif command == "clear":
                 os.system("clear")
+            elif command == "banner":
+                banner()
             elif command == "plugins" or command == "plugin":
                 commands()
             elif command in plugins:
