@@ -1,8 +1,8 @@
 #!/bin/bash
 cp Genesis /usr/bin/genesis;
-mkdir /opt/Genesis/
-mkdir Storage
+mkdir /opt/Genesis/;
+mkdir Storage;
 cp * -r /opt/Genesis/;
-chmod +x /usr/bin/genesis
-echo "install complete! run genesis!"
-
+chmod +x /usr/bin/genesis;
+echo "install complete! run genesis!";
+cp update_genesis /usr/bin/update_genesis;
