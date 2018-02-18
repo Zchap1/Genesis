@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # Author 0x5a
+
 import os
 import random
 import time
@@ -23,13 +24,15 @@ loaded = len(plugins)
 mac = os.popen("/sbin/ifconfig wlan0 | awk '/ether/{print $2}'").read()
 public_ip = os.popen("wget http://ipinfo.io/ip -qO -").read()
 Local_ip = os.popen("/sbin/ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'").read()
+gw = os.popen("/sbin/ip route | awk '/default/ { printf $3 }'").read()
 #data = """ \t Public IP: %s \n\t Local IP: %s \n\t MAC: %s""" % (public_ip,Local_ip,mac)
 first = "\tPublic IP: %s " % public_ip
 second ="\tLocal IP:  %s " % Local_ip
-third = "\tMAC Addr:  %s" % mac
-
+third = "\tMAC Addr:  %s " % mac
+fourth ="\tGate Way:  %s " % gw
 
 def banner():
+    os.system("clear")
     os.system("figlet Genesis")
     print("\tExploit Framework made by 0x5a\n")
     print("\tFocuses On Practical Exploitation\n")
@@ -41,11 +44,11 @@ def drama():
     banner()
     print("\t"+'='*36, "\t\n")
     time.sleep(2)
-    print(first)
-    time.sleep(1)
     print(second)
-    time.sleep(1.5)
+    time.sleep(1)
     print(third)
+    time.sleep(1.5)
+    print(fourth)
     print("\t"+'='*36, "\t")
     print("\n")
 
@@ -56,7 +59,6 @@ def help():
     print("\t\033[93mPlugins\t        \033[92mShow Plugins \033[0m \n")
     print("\t\033[93m[plugin_name]\t\033[92mRun Plugin\033[0m \n")
 def commands():
-    print("Commands")
     for x in range(0,loaded):
         filename = plugins[x]
         info_file=open("Plugins/"+filename+".info","r")
@@ -75,10 +77,6 @@ while 1:
             elif command == "help"or command=="h" or command=="?":
                 help()
                 pass
-            elif command == "clear":
-                os.system("clear")
-            elif command == "banner":
-                banner()
             elif command == "plugins" or command == "plugin":
                 commands()
             elif command in plugins:
