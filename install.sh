@@ -1,4 +1,5 @@
 #!/bin/bash
+rm -rf /opt/Genesis;
 cp Genesis /usr/bin/genesis;
 mkdir /opt/Genesis/;
 mkdir Storage;
